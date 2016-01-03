@@ -1,11 +1,12 @@
 @extends('admin::layouts.default')
 
 @section('content')
-<div class="content-wrapper">
-	<div class="container">
-		<div class="row">
-	{{Form::model($album,array('route'=>array('admin.album.update',$album->id),'method'=>'PUT' ,'class'=>'formAdmin form-horizontal','files'=>true))}}
-		
+<section class="content-header">
+  <h1>Albums</h1>
+</section>
+<section class="content">
+	<div class="box">
+		{{Form::model($album,array('route'=>array('admin.album.update',$album->id),'method'=>'PUT' ,'class'=>'formAdmin form-horizontal','files'=>true))}}
 			<div class="form-group">
 				<label for="" class="col-sm-2">Title</label>
 				<div class="col-sm-10">
@@ -33,14 +34,12 @@
 				</div>
 			</div>
 	{{Form::close()}}
-		</div>
 	</div>
-</div>
-
+</section>
 @stop
 
 @section('data_code')
 <script>
-	
+
 </script>
 @stop

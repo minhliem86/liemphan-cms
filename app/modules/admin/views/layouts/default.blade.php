@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	 <meta charset="utf-8">
+	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>AdminLTE 2 | Starter</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -11,21 +11,23 @@
 
 		 <!-- Font Awesome -->
 	{{HTML::style('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')}}
+
 	<!-- Ionicons -->
 	{{HTML::style('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')}}
 	<!-- Theme style -->
 	{{HTML::style('public/backend/css/AdminLTE.min.css')}}
+
 	<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
 	        page. However, you can choose any other skin. Make sure you
 	        apply the skin class to the body tag so the changes take effect.
 	  -->
 	 {{HTML::style('public/backend/css/skins/skin-blue.min.css')}}
 
+	 <!-- CUSTOMIZE -->
+	 {{HTML::style('public/backend/css/style.css')}}
+
 	<!-- Date Picker -->
 	{{HTML::style('public/backend/plugins/datepicker/datepicker3.css')}}
-
-	<!-- FLAT-UI -->
-	<!-- {{HTML::style('public/backend/css/flat-ui/css/flat-ui.css')}} -->
 
 	<!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
