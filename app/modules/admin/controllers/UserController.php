@@ -103,7 +103,6 @@ class UserController extends \BaseController {
 
 	public function getLogin(){
 		return \View::make('admin::pages.login');
-		// return "asdasd";
 	}
 
 	public function postLogin(){

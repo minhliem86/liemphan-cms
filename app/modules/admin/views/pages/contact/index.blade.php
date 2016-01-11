@@ -1,10 +1,14 @@
 @extends('admin::layouts.default')
 
 @section('content')
-<div class="content-wrapper">
-	<div class="container">
-		<div class="row">
-			@if(!is_null($contact))
+<section class="content-header">
+	<h1>Thông tin liên hệ</h1>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				@if(!is_null($contact))
 			{{Form::model($contact,array('route'=>array('admin.contact.post')) )}}
 				<div class="form-group">
 					{{Form::label('Phone Number')}}
@@ -17,10 +21,6 @@
 				<div class="form-group">
 					{{Form::label('Email')}}
 					{{Form::text('email',Input::old('email'),array('class'=>'form-control') )}}
-				</div>
-				<div class="form-group">
-					{{Form::label('Fax')}}
-					{{Form::text('fax',Input::old('fax'),array('class'=>'form-control') )}}
 				</div>
 				<div class="form-group">
 					{{Form::label('Map')}}
@@ -45,10 +45,6 @@
 					{{Form::text('email',Input::old('email'),array('class'=>'form-control') )}}
 				</div>
 				<div class="form-group">
-					{{Form::label('Fax')}}
-					{{Form::text('fax',Input::old('fax'),array('class'=>'form-control') )}}
-				</div>
-				<div class="form-group">
 					{{Form::label('Map')}}
 					{{Form::text('map',Input::old('map'),array('class'=>'form-control') )}}
 				</div>
@@ -57,11 +53,10 @@
 				</div>
 			{{Form::close()}}
 			@endif
-
+			</div>
 		</div>
 	</div>
-</div>
-
+</section>
 @stop
 
 @section('script')

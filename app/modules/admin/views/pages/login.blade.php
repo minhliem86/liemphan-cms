@@ -1,87 +1,69 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <!--[if IE]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <![endif]-->
-        <title>Dashboard Login</title>
-        <!-- BOOTSTRAP CORE STYLE  -->
-        {{HTML::style('public/backend/assets/css/bootstrap.css')}}
-        <!-- FONT AWESOME ICONS  -->
-        {{HTML::style('public/backend/assets/css/font-awesome.css')}}
-        <!-- CUSTOM STYLE  -->
-        {{HTML::style('public/backend/assets/css/style.css')}}
-        <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-    <body>
-        <header>
-            
-        </header>
-        <!-- HEADER END-->
-        
-        <!-- MENU SECTION END-->
-        <div class="content-wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4 class="page-head-line">Please Login To Dashboard </h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        {{Form::open(array('route'=>'postLogin') )}}
-                        {{Form::label('Enter email or username')}}
-                        {{Form::text('email',Input::old('email'), array('class'=>'form-control') )}}
-                        {{Form::label('Enter password')}}
-                        {{Form::password('password', array('class'=>'form-control') )}}
-                        <hr />
-                        {{Form::submit('Log in me',array('class'=>'btn btn-info') )}}
-                        <a href="{{route('admin.account.forget')}}" class="forget" style="display:inline-block; text-align:right; float:right">Forget the password ?</a>
-                        {{Form::close()}}
-                        
-                        
-                        @if (Session::get('error'))
-                            <div class="alert alert-error alert-danger">{{{ Session::get('error') }}}</div>
-                        @endif
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.5 -->
+  {{HTML::style('public/backend/bootstrap/css/bootstrap.min.css')}}
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  {{HTML::style('public/backend/css/AdminLTE.min.css')}}
 
-                        @if (Session::get('notice'))
-                            <div class="alert alert-success">{{{ Session::get('notice') }}}</div>
-                        @endif
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- CONTENT-WRAPPER SECTION END-->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        &copy; 2015 YourCompany | By : <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- FOOTER SECTION END-->
-        <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
-        <!-- CORE JQUERY SCRIPTS -->
-        {{HTML::script('public/backend/assets/js/jquery-1.11.1.js')}}
-        <!-- BOOTSTRAP SCRIPTS  -->
-        {{HTML::script('public/backend/assets/js/bootstrap.js')}}
-        <!-- ALERTIFY -->
-        {{HTML::script('public/backend/assets/js/alert/alertify.js')}}
-        {{HTML::style('public/backend/assets/js/alert/alertify.core.css')}}
-        {{HTML::style('public/backend/assets/js/alert/alertify.bootstrap.css')}}
-        <script type="text/javascript">
-                {{Notification::showSuccess('alertify.success(":message");') }}
-                {{Notification::showError('alertify.error(":message");') }}
-        </script>
-    </body>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index2.html"><b>Admin</b>LTE</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Sign in to start your session</p>
+    
+    {{Form::open(array('route'=>'postLogin') )}}
+      <div class="form-group has-feedback">
+        {{Form::text('email',Input::old('email'), array('class'=>'form-control', 'placeholder'=> 'Username or Email') )}}
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        {{Form::password('password', array('class'=>'form-control', 'placeholder'=> 'Password') )}}
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+          <!-- <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button> -->
+          {{Form::submit('Sign In',array('class'=>'btn btn-primary btn-block btn-flat') )}}
+        <!-- /.col -->
+      </div>
+      @if(Session::has('error'))
+      <div class="form-group">
+        <span style="color:red">{{Session::get('error')}}</span>
+      </div>
+      @endif
+    {{Form::close()}}
+
+    <a href="{{route('admin.account.forget')}}">I forgot my password</a><br>
+    <!-- <a href="register.html" class="text-center">Register a new membership</a> -->
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery 2.1.4 -->
+{{HTML::script('public/backend/js/jquery-1.11.1.js')}}
+<!-- Bootstrap 3.3.5 -->
+{{HTML::script('public/backend/bootstrap/js/bootstrap.min.js')}}
+<!-- iCheck -->
+</body>
 </html>

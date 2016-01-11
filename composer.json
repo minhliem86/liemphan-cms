@@ -17,7 +17,9 @@
 	"autoload": {
 		"psr-4":{
 			"admin\\":"app/modules/admin",
+			"lienhoa\\":"app/modules/lienhoa",
 			"services\\":"app/chris/services",
+			"lienhoa\\services\\":"app/modules/lienhoa/services",
 			"validations\\":"app/chris/validations"
 		},
 		"classmap": [

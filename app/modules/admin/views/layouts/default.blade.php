@@ -58,6 +58,9 @@ desired effect
 </head>
 <body class="skin-blue sidebar-mini">
 	<div class="wrapper">
+		<div class="wrap-loading">
+			<img src="{{asset('public/backend/img/loading.gif')}}" alt="">
+		</div>
 		@include('admin::layouts.header')
 		@include('admin::layouts.sidebar')
 			<div class="content-wrapper">

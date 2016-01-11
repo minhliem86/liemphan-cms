@@ -1,40 +1,39 @@
 @extends('admin::layouts.default')
 
 @section('content')
-<div class="content-wrapper">
-	<div class="container">
-		<div class="row">
-			{{Form::open(array('route'=>'admin.image.store','class'=>'formAdmin form-horizontal','files'=>true))}}
-					<div class="form-group">
-						<label for="" class="col-sm-2">Select Album</label>
-						<div class="col-sm-5">
-							{{Form::select('album_id',$album,'',array('class'=>'form-control'))}}
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-10 col-sm-offset-2">
-							<button class="btn btn-info" type="button" onclick="openCKFinder()">Choose images</button>
-							<!-- <button class="btn btn-info" type="button" onclick="openCKFinder()">Choose image</button> -->
-					    		<div id="preview_img"></div>
-						</div>
-
+<section class="content-header">
+	<h1>Add New Image</h1>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				{{Form::open(array('route'=>array('admin.image.store'),'class'=>'formAdmin form-horizontal','files'=>true))}}
+					<div style="margin-bottom:10px">
+						<button class="btn btn-info" type="button" onclick="openCKFinder()">Choose images</button>
+						<!-- <button class="btn btn-info" type="button" onclick="openCKFinder()">Choose image</button> -->
+				    	<div id="preview_img"></div>
 					</div>
 
-					<div class="form-group">
-						<div class="col-sm-10 col-sm-offset-2">
+					<div style="margin-bottom:10px">
 							{{Form::submit('Save',array('class'=>'btn btn-primary'))}}
-						</div>
 					</div>
-			{{Form::close()}}
+					{{Form::hidden('album_id',$album_id)}}
+				{{Form::close()}}
+			</div>
 		</div>
 	</div>
-</div>
-
+	
+</section>
 @stop
 
 @section('script')
-{{HTML::script('public/backend/assets/js/ckfinder/ckfinder.js')}}
+{{HTML::script('public/backend/js/ckfinder/ckfinder.js')}}
 <script>
+	$(document).ready(function(){
+			{{Notification::showSuccess('alertify.success(":message");') }}
+			{{Notification::showError('alertify.error(":message");') }}
+	})
 	function remove_file(value){
 		$('li.img_group').remove(value);
 	}
@@ -67,7 +66,7 @@
 
 		        		var img_remove = document.createElement('img');
 		        		img_remove.setAttribute('title', 'Remove file');
-		        		img_remove.src="{{asset('public')}}/backend/assets/img/Remove.png";
+		        		img_remove.src="{{asset('public')}}/backend/img/Remove.png";
 		        		btn_remove.appendChild(img_remove);
 
 				var elem = document.createElement("input");
@@ -106,7 +105,7 @@
 
 		        		var img_remove = document.createElement('img');
 		        		img_remove.setAttribute('title', 'Remove file');
-		        		img_remove.src="{{asset('public')}}/backend/assets/img/Remove.png";
+		        		img_remove.src="{{asset('public')}}/backend/img/Remove.png";
 		        		btn_remove.appendChild(img_remove);
 
 				var elem = document.createElement("input");

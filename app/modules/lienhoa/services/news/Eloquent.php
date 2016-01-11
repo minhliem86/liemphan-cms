@@ -1,13 +1,13 @@
 <?php 
-namespace services\countries;
+namespace lienhoa\services\news;
 
-use Countries;
+use lienhoa\models\News;
 use services\AbstractEloquent;
 
 class Eloquent extends AbstractEloquent implements RepoInterface{
 	protected $model;
 
-	public function __construct(Countries $model){
-		$this->model = $model;
+	public function __construct(News $news){
+		$this->model = $news;
 	}
 }

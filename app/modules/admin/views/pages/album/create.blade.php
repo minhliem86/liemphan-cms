@@ -33,7 +33,7 @@
 </section>
 @stop
 
-@section('data_code')
+@section('script')
 <script>
 	
 </script>

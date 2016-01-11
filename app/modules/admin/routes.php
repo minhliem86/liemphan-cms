@@ -2,8 +2,8 @@
 Route::get('admin',array('as'=>'getLogin','before'=>'checkLogined', 'uses'=>'admin\controllers\UsersController@login'));
 Route::post('admin/login',array('as'=>'postLogin', 'uses'=>'admin\controllers\UsersController@doLogin'));
 
-Route::group(array('prefix' => 'admin', 'namespace' =>'admin\controllers'), function(){
-	Route::get('/',array('as'=> 'dashboard',function(){
+Route::group(array('prefix' => 'admin', 'namespace' =>'admin\controllers','before'=>'checkAdmin'), function(){
+	Route::get('dashboard',array('as'=> 'dashboard',function(){
 		return  \View::make('admin::pages.index.index');
 	}));
 	// CATE
@@ -30,11 +30,16 @@ Route::group(array('prefix' => 'admin', 'namespace' =>'admin\controllers'), func
 	Route::resource('album','AlbumsController');
 
 	// IMAGE
-	Route::get('image/delete/{id}',array ('as'=>'admin.image.delete','before'=>'checkHR', 'uses'=>'ImageController@delete'))->where('id','[0-9]+');
-	Route::post('image/deleteall',array ('as'=>'admin.image.deleteall', 'uses'=>'ImageController@deleteall'));
-	Route::post('image/sort',array ('as'=>'admin.image.sort', 'uses'=>'ImageController@sort'));
+	Route::get('album/images/{album_id}',array('as' => 'admin.image.index','uses'=>'ImageController@index'))->where('album_id','[0-9]+');
+	Route::get('album/images/create/{album_id}',array('as'=>'admin.image.create','uses'=>'ImageController@create'))->where('album_id','[0-9]+');
+	Route::post('album/images/store',array('as'=>'admin.image.store','uses'=>'ImageController@store'));
+
+	Route::post('album/images/update/{image_id}',array('as'=>'admin.image.update','uses'=>'ImageController@update'))->where('image_id','[0-9]+');
+
+	Route::get('images/delete/{id}',array ('as'=>'admin.image.delete','before'=>'checkHR', 'uses'=>'ImageController@delete'))->where('id','[0-9]+');
+	Route::post('images/deleteall',array ('as'=>'admin.image.deleteall', 'uses'=>'ImageController@deleteall'));
+	Route::post('images/sort',array ('as'=>'admin.image.sort', 'uses'=>'ImageController@sort'));
 	
-	Route::resource('image', 'ImageController');
 
 	// USER
 	Route::get('logout',array('as'=> 'getLogout','uses' => 'UsersController@logout'));
@@ -54,7 +59,7 @@ Route::group(array('prefix' => 'admin', 'namespace' =>'admin\controllers'), func
 
 	// CONTACT INFORMATION
 	Route::get('contact',array('as'=>'admin.contact','uses'=>'ContactController@index') );
-	Route::post('contact',array('as'=>'admin.contact.post','uses'=>'ContactController@post') );
+	Route::post('contact',array('as'=>'admin.contact.post','uses'=>'ContactController@post'));
 
 
 });

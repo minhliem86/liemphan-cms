@@ -11,7 +11,7 @@ class ImageController extends \BaseController {
 	protected $image;
 	protected $album;
 	protected $valid;
-	protected $name_project = '/duhoche-cms';
+	protected $name_project = '/liemphan-cms';
 
 	public function __construct(Image $image, Album $album, ValidImageForm $validation){
 		$this->image = $image;
@@ -24,11 +24,10 @@ class ImageController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($album_id)
 	{
-		$album = $this->album->select_list('title','id');
-		$image = $this->image->select_all();
-		return \View::make('admin::pages.image.index')->with(compact('image','album'));
+		$image = $this->image->whereGet('album_id',$album_id);
+		return \View::make('admin::pages.image.index')->with(compact('image','album_id'));
 	}
 
 
@@ -37,10 +36,9 @@ class ImageController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($album_id)
 	{
-		$album = $this->album->select_list('title','id');
-		return \View::make('admin::pages.image.create')->with(compact('album'));
+			return \View::make('admin::pages.image.create')->with(compact('album_id'));
 	}
 
 
@@ -51,38 +49,44 @@ class ImageController extends \BaseController {
 	 */
 	public function store()
 	{
+		// return $album_id;
 		$get = \Input::get('img');
 		$title_arr = \Input::get('title');
 		$i = 1;
-		foreach($get as $k => $value){
-			$sort = $this->image->orderFirstWhere('album_id',\Input::get('album_id'),'sort','DESC');
-			if(!isset($sort) && $i == 1){
-				$current = 1;
-			}elseif( !isset($sort) && $i != 1){
-				$current = $i;
-			}
-			if(isset($sort)){
-				$current = $sort->sort + $i;
-			}
+		if(!is_null($get)){
+			foreach($get as $k => $value){
+				$sort = $this->image->orderFirstWhere('album_id',\Input::get('album_id'),'sort','DESC');
+				if(!isset($sort) && $i == 1){
+					$current = 1;
+				}elseif( !isset($sort) && $i != 1){
+					$current = $i;
+				}
+				if(isset($sort)){
+					$current = $sort->sort + $i;
+				}
 
-			$urlhinh_orgi = $value;
-			$urlhinh = str_replace('duhoche-cms/', '', $urlhinh_orgi);
-			// $thumb_img = \Image::make($url_thumb)->resize(250,158)->save($this->path_thumb.time().'_thumb_'.$name_thumb);
-			$text = $title_arr[$k];
-			$data[] = array (
-				'alt_text'=> $text,
-				'slug' => \Unicode::make($text),
-				'path_img'=> $urlhinh,
-				'show'=>1,
-				'album_id'=>\Input::get('album_id'),
-				'sort'=>$current
-			);
-			$i++;
-		};
-
-		\DB::table('images')->insert($data);
-		\Notification::success('CREATED !');
-		return \Redirect::route('admin.image.index');
+				$urlhinh_orgi = $value;
+				$urlhinh = str_replace($this->name_project, '', $urlhinh_orgi);
+				// $thumb_img = \Image::make($url_thumb)->resize(250,158)->save($this->path_thumb.time().'_thumb_'.$name_thumb);
+				$text = $title_arr[$k];
+				$data[] = array (
+					'alt_text'=> $text,
+					'slug' => \Unicode::make($text),
+					'path_img'=> $urlhinh,
+					'show'=>1,
+					'album_id'=>\Input::get('album_id'),
+					'album_name'=>$this->album->find(\Input::get('album_id'))->title,
+					'sort'=>$current
+				);
+				$i++;
+			};
+			\DB::table('images')->insert($data);
+			\Notification::success('CREATED !');
+			return \Redirect::route('admin.image.index',\Input::get('album_id'));
+		}else{
+			\Notification::error('Please Choose Images');
+			return \Redirect::back();
+		}
 	}
 
 
@@ -120,7 +124,7 @@ class ImageController extends \BaseController {
 	{
 		if(!\Input::hasFile('img')){
 			$img = \Input::get('img_bk');
-			$path_img = str_replace( asset(''),'', $img);
+			$path_img = $img;
 		}else{
 			try{
 				$this->valid->validate(\Input::all());

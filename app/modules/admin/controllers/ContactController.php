@@ -23,7 +23,6 @@ class ContactController extends \BaseController{
 				'phone'=> \Input::get('phone'),
 				'email'=> \Input::get('email'),
 				'address'=> \Input::get('address'),
-				'fax'=> \Input::get('fax'),
 				'map'=> \Input::get('map'),
 				'show'=> 1
 			);
@@ -33,7 +32,6 @@ class ContactController extends \BaseController{
 				'phone'=> \Input::get('phone'),
 				'email'=> \Input::get('email'),
 				'address'=> \Input::get('address'),
-				'fax'=> \Input::get('fax'),
 				'map'=> \Input::get('map'),
 				'show'=> 1
 			);
