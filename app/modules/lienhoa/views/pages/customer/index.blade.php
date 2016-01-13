@@ -1,7 +1,7 @@
 @extends('admin::layouts.default')
 @section('content')
 <section class="content-header">
-  <h1>Tin tức</h1>
+  <h1>Khách hàng liên hệ</h1>
 </section>
 <section class="content">
 	<div class="row">
@@ -9,12 +9,11 @@
 			<div class="box">
 	            <div class="box-header">
 	              <div class="pull-right">
-	              	<a href="{{route('admin.tintuc.create')}}" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-plus"></i> Add New</a>
 					<button class="btn btn-danger btn-xs" data-method="remove" id="btn-remove">Remove</button>
 	              </div>
 	            </div>
 	            <!-- /.box-header -->
-	            @if($news->count() != 0)
+	            @if($customer->count() != 0)
 				<div class="box-body">
 
 				  <table id="table-post" class="table table-bordered table-striped" data-page-number="1" data-page-size="10" data-pagination="true" data-page-list="[5,10,15,20]" data-show-toggle="true" data-click-to-select="true" data-select-item-name="id_field[]" data-toggle="table">
@@ -22,22 +21,20 @@
 				    <tr>
 						<th data-checkbox="true"></th>
 						<th data-field="id" class="sr-only">ID</th>
-						<th data-field="title" data-width="55%">Bài viết</th>
-						<th>Trạng thái</th>
-						<th data-width="10%">Sắp xếp</th>
-						<th data-width="18%">Thao tác</th>
+						<th data-field="title" data-width="55%">Tên khách hàng</th>
+						<th>Status</th>
+						<th data-width="18%">Action</th>
 					</tr>
 				    </thead>
 				    <tbody>
-					    @foreach($news as $item)
+					    @foreach($customer as $item)
 						<tr>
 							<td></td>
 							<td class="sr-only">{{$item->id}}</td>
-							<td><b>{{$item->title}}</b></td>
+							<td><b>{{$item->fullname}}</b></td>
 							<td >
-							{{Form::select('show', array('0'=>'Ẩn', '1'=>'Hiện'), $item->status, array('class'=>'form-control', 'id'=>$item->id ) )}}</td>
-							<td>{{Form::text('order',$item->order,array('class' => 'form-control'))}}</td>
-							<td><a href="{{route('admin.tintuc.edit',$item->id)}}" class="btn btn-info btn-xs"> Edit </a> <button class="btn  btn-danger btn-xs" onclick="confirm_remove(this)"  href="{{route('admin.tintuc.delete', array($item->id) )}}" > Remove </button></td>
+							{{Form::select('show', array('0'=>'Chưa xem', '1'=>'Đã xem'), $item->xem, array('class'=>'form-control', 'id'=>$item->id ) )}}</td>
+							<td><a href="{{route('admin.customer.show',$item->id)}}" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> View </a> <button class="btn  btn-danger btn-xs" onclick="confirm_remove(this)"  href="{{route('admin.customer.delete', array($item->id) )}}" > Remove </button></td>
 						</tr>
 						@endforeach
 				    </tbody>
@@ -48,7 +45,7 @@
 				  </table>
 				</div>
 				@else
-					<h2 class="text-center">Chưa có tin tức</h2>
+					<h2 class="text-center">Chưa có thông tin liên hệ</h2>
 				@endif
             <!-- /.box-body -->
 			</div>
@@ -70,24 +67,6 @@
 			{{Notification::showError('alertify.error(":message");') }}
 
 
-			// SHOW/HIDE
-			$('select[name="show"]').change(function(){
-				var id = $(this).attr('id');
-				var val = $(this).val();
-				$.ajax({
-					'url' : "{{route('admin.tintuc.status')}}",
-					'type' : 'POST',
-					'data' : {id:id,value:val},
-					'beforeSend':function(){
-						$('.wrap-loading').fadeIn();
-					},
-					'success': function(data){
-						$('.wrap-loading').fadeOut();
-						alertify.success('Status has changed !');
-					},
-				});
-			});
-
 			// REMOVE ALL
 			$('#btn-remove').click(function(){
 				var select = $("#table-post").bootstrapTable('getSelections');
@@ -98,7 +77,7 @@
 				alertify.confirm("You can not undo this action. Are you sure ?", function(e){
 					if(e){
 						$.ajax({
-							url:"{{route('admin.tintuc.deleteAll')}}",
+							url:"{{route('admin.sanpham.deleteAll')}}",
 							type:"POST",
 							data: {arr : id},
 							success:function(data){

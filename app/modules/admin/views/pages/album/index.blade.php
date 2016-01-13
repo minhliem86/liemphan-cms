@@ -21,20 +21,20 @@
 				    <thead>
 				    <tr>
 						<th data-checkbox="true"></th>
-						<th data-field="id">ID</th>
-						<th data-field="title" data-width="60%">Title</th>
-						<th>Status</th>
-						<th>Action</th>
+						<th data-field="id" class="sr-only">ID</th>
+						<th data-field="title" data-width="60%">Tên Album</th>
+						<th>Trạng thái</th>
+						<th>Thao tác</th>
 					</tr>
 				    </thead>
 				    <tbody>
 					    @foreach($album as $item)
 						<tr>
 							<td></td>
-							<td>{{$item->id}}</td>
+							<td class="sr-only">{{$item->id}}</td>
 							<td><b><a href="{{route('admin.image.index',$item->id)}}">{{$item->title}}</a></b></td>
 							<td >
-							{{Form::select('show', array('0'=>'hide', '1'=>'show'), $item->show, array('class'=>'form-control', 'id'=>$item->id ) )}}</td>
+							{{Form::select('show', array('0'=>'Ẩn', '1'=>'Hiện'), $item->show, array('class'=>'form-control', 'id'=>$item->id ) )}}</td>
 							<td><a href="{{route('admin.album.edit', array($item->id) )}}" class="btn btn-info btn-xs"> Edit </a> <button class="btn  btn-danger btn-xs" onclick="confirm_remove(this)"  href="{{route('admin.album.delete', array($item->id) )}}" > Remove </button></td>
 						</tr>
 						@endforeach

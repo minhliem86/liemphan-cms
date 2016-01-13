@@ -17,5 +17,9 @@ class ModelServiceProvider extends ServiceProvider{
 		$this->app->bind('services\Permission\RepoInterface','services\Permission\Eloquent');
 		// LIENHOA
 		$this->app->bind('lienhoa\services\news\RepoInterface','lienhoa\services\news\Eloquent');
+		$this->app->bind('lienhoa\services\gioithieu\RepoInterface','lienhoa\services\gioithieu\Eloquent');
+		$this->app->bind('lienhoa\services\danhmuc\RepoInterface','lienhoa\services\danhmuc\Eloquent');
+		$this->app->bind('lienhoa\services\sanpham\RepoInterface','lienhoa\services\sanpham\Eloquent');
+		$this->app->bind('lienhoa\services\customer\RepoInterface','lienhoa\services\customer\Eloquent');
 	}
 }

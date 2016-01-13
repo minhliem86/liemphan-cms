@@ -21,13 +21,28 @@
         <li class="{{\Active::setActive(2,'album')}}"><a href="{{route('admin.album.index')}}"><i class="fa fa-photo"></i> <span>Albums</span></a></li>
         <li class="{{\Active::setActive(2,'contact')}}"><a href="{{route('admin.contact')}}"><i class="fa fa-home"></i> <span>Thông tin liên hệ</span></a></li>
         <li class="{{\Active::setActive(2,'tintuc')}}"><a href="{{route('admin.tintuc.index')}}"><i class="fa fa-home"></i> <span>Tin Tức</span></a></li>
+        <li class="{{\Active::setActive(2,'gioithieu')}}"><a href="{{route('admin.gioithieu.index')}}"><i class="fa fa-home"></i> <span>Giới thiệu</span></a></li>
+        <li class="{{\Active::setActive(2,'danhmuc')}}"><a href="{{route('admin.danhmuc.index')}}"><i class="fa fa-home"></i> <span>Danh mục sản phẩm</span></a></li>
         <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Sản phẩm</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            @if(!is_null($danhmuc))
+                @foreach($danhmuc as $item_danhmuc)
+                  <li><a href="{{route('admin.sanpham.index',$item_danhmuc->id)}}">{{$item_danhmuc->title}}</a></li>
+                @endforeach
+            @else
+                <li><a href="javascript:avoid()">Chưa có sản phẩm</a></li>
+            @endif
+          </ul>
+        </li>
+        <li class="{{\Active::setActive(2,'customer')}}"><a href="{{route('admin.customer.index')}}"><i class="fa fa-home"></i> <span>Khách hàng liên hệ</span></a></li>
+        <!-- <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
             <li><a href="#">Link in level 2</a></li>
             <li><a href="#">Link in level 2</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
       <!-- /.sidebar-menu -->
     </section>

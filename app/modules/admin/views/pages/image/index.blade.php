@@ -22,7 +22,7 @@
 						<li>
 							<div class="each-img">
 								<img src="{{asset($item->path_img)}}" data-source="{{asset($item->path_img)}}"  data-toggle="modal" data-target="#myModal" data-id="{{$item->id}}" data-alt="{{$item->alt_text}}" data-sort="{{$item->sort}}" data-show="{{$item->show}}" data-albumid="{{$album_id}}" data-imgbk="{{$item->path_img}}" class="img-responsive" />
-								<p><b>Status:</b> {{$item->show == 1 ? 'show' : 'hide' }}</p>
+								<p><b>T/Thái:</b> {{$item->show == 1 ? 'show' : 'hide' }}</p>
 								<p>{{Form::text('sort',$item->sort,array('class'=>'class-form form-control') )}}</p>
 								<p><input type="checkbox" class="check" name="check[]" value="{{$item->id}}" /></p>
 								<button type="button" class="btn btn-danger" href="{{route('admin.image.delete', $item->id)}}" onclick="confirm_remove(this)">Remove</button>

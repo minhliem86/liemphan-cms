@@ -1,7 +1,7 @@
 @extends('admin::layouts.default')
 @section('content')
 <section class="content-header">
-  <h1>Tin tức</h1>
+  <h1>Danh mục Sản Phẩm: {{$danhmuc->title}}</h1>
 </section>
 <section class="content">
 	<div class="row">
@@ -9,12 +9,12 @@
 			<div class="box">
 	            <div class="box-header">
 	              <div class="pull-right">
-	              	<a href="{{route('admin.tintuc.create')}}" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-plus"></i> Add New</a>
+	              	<a href="{{route('admin.sanpham.create',$danhmuc_id)}}" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-plus"></i> Add New</a>
 					<button class="btn btn-danger btn-xs" data-method="remove" id="btn-remove">Remove</button>
 	              </div>
 	            </div>
 	            <!-- /.box-header -->
-	            @if($news->count() != 0)
+	            @if($sanpham->count() != 0)
 				<div class="box-body">
 
 				  <table id="table-post" class="table table-bordered table-striped" data-page-number="1" data-page-size="10" data-pagination="true" data-page-list="[5,10,15,20]" data-show-toggle="true" data-click-to-select="true" data-select-item-name="id_field[]" data-toggle="table">
@@ -22,22 +22,24 @@
 				    <tr>
 						<th data-checkbox="true"></th>
 						<th data-field="id" class="sr-only">ID</th>
-						<th data-field="title" data-width="55%">Bài viết</th>
+						<th data-field="title" data-width="45%">Tên Sản Phẩm</th>
+						<th data-field="image">Hình ảnh</th>
 						<th>Trạng thái</th>
 						<th data-width="10%">Sắp xếp</th>
 						<th data-width="18%">Thao tác</th>
 					</tr>
 				    </thead>
 				    <tbody>
-					    @foreach($news as $item)
+					    @foreach($sanpham as $item)
 						<tr>
 							<td></td>
 							<td class="sr-only">{{$item->id}}</td>
-							<td><b>{{$item->title}}</b></td>
+							<td><b>{{$item->name}}</b></td>
+							<td><img src="{{asset($item->image_path)}}"  style="max-width:50px"></td>
 							<td >
 							{{Form::select('show', array('0'=>'Ẩn', '1'=>'Hiện'), $item->status, array('class'=>'form-control', 'id'=>$item->id ) )}}</td>
 							<td>{{Form::text('order',$item->order,array('class' => 'form-control'))}}</td>
-							<td><a href="{{route('admin.tintuc.edit',$item->id)}}" class="btn btn-info btn-xs"> Edit </a> <button class="btn  btn-danger btn-xs" onclick="confirm_remove(this)"  href="{{route('admin.tintuc.delete', array($item->id) )}}" > Remove </button></td>
+							<td><a href="{{route('admin.sanpham.edit',array($danhmuc_id,$item->id))}}" class="btn btn-info btn-xs"> Edit </a> <button class="btn  btn-danger btn-xs" onclick="confirm_remove(this)"  href="{{route('admin.sanpham.delete', array($item->id) )}}" > Remove </button></td>
 						</tr>
 						@endforeach
 				    </tbody>
@@ -48,7 +50,7 @@
 				  </table>
 				</div>
 				@else
-					<h2 class="text-center">Chưa có tin tức</h2>
+					<h2 class="text-center">Hiện chưa có sản phẩm</h2>
 				@endif
             <!-- /.box-body -->
 			</div>
@@ -75,7 +77,7 @@
 				var id = $(this).attr('id');
 				var val = $(this).val();
 				$.ajax({
-					'url' : "{{route('admin.tintuc.status')}}",
+					'url' : "{{route('admin.sanpham.status')}}",
 					'type' : 'POST',
 					'data' : {id:id,value:val},
 					'beforeSend':function(){
@@ -98,7 +100,7 @@
 				alertify.confirm("You can not undo this action. Are you sure ?", function(e){
 					if(e){
 						$.ajax({
-							url:"{{route('admin.tintuc.deleteAll')}}",
+							url:"{{route('admin.sanpham.deleteAll')}}",
 							type:"POST",
 							data: {arr : id},
 							success:function(data){
