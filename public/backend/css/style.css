@@ -17,6 +17,9 @@
 	border-radius:0 0 7px 7px;
 	display: none;
 }
+.navbar-nav>.notifications-menu>.dropdown-menu>li .menu>li>a, .navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a, .navbar-nav>.tasks-menu>.dropdown-menu>li .menu>li>a{ white-space:inherit;}
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>h4{margin:0;}
+.navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a>p{margin:0;}
 span.inline-radio{margin-right:15px;	}
 
 li.img_group { display: block; width: 20%; float: left; margin-right: 10px; margin-bottom: 10px; list-style-type: none; position: relative; }

@@ -77,7 +77,7 @@
 				alertify.confirm("You can not undo this action. Are you sure ?", function(e){
 					if(e){
 						$.ajax({
-							url:"{{route('admin.sanpham.deleteAll')}}",
+							url:"{{route('admin.customer.deleteAll')}}",
 							type:"POST",
 							data: {arr : id},
 							success:function(data){

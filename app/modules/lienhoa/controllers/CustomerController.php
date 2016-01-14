@@ -30,13 +30,14 @@ class CustomerController extends \BaseController {
 	public function show($id)
 	{
 		$customer = $this->customer->find($id);
+		$this->customer->update($id,array('xem'=>1));
 		return \View::make('lienhoa::pages.customer.view')->with(compact('customer'));
 	}
 
 	public function delete($id){
-		$this->danhmuc->delete($id);
+		$this->customer->delete($id);
 		\Notification::success('DELETED !');
-		return \Redirect::route('admin.danhmuc.index');
+		return \Redirect::route('admin.customer.index');
 	}
 
 	public function deleteAll(){
@@ -47,7 +48,7 @@ class CustomerController extends \BaseController {
 			if(!$data){
 				return \Response::json(array('msg'=>'error'));
 			}else{
-				$this->danhmuc->delete($data);
+				$this->customer->delete($data);
 				return \Response::json(array('msg'=>$data));
 			}
 		}

@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('LiemPhan-PC'),
+	'local' => array('LiemPhan-PC','IVH01MW115'),
 	'product' => array('domain'),
 
 ));

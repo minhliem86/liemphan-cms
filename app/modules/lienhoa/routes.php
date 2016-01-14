@@ -35,3 +35,8 @@ View::composer('admin::layouts.sidebar',function($view){
 	$danhmuc = lienhoa\models\Danhmuc::where('status',1)->orderBy('order','ASC')->get();
 	$view->with(compact('danhmuc'));
 });
+
+View::composer('admin::layouts.header',function($view){
+	$customer = lienhoa\models\Customer::where('xem',0)->orderBy('id','DESC')->take(5)->get();
+	$view->with(compact('customer'));
+});
