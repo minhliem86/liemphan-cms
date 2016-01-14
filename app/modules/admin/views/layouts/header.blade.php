@@ -80,7 +80,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{route('admin.user.changePass')}}" class="btn btn-default btn-flat">Thay đổi mật khẩu</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{route('getLogout')}}" class="btn btn-default btn-flat">Sign out</a>

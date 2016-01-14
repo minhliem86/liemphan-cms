@@ -1,15 +1,13 @@
 @extends('admin::layouts.default')
 
 @section('content')
-<div class="content-wrapper">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h4 class="page-head-line">Change Password</h4>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6 col-sm-offset-3">
+<section class="content-header">
+  <h1>Change Password</h1>
+</section>
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
 				{{Form::open(array('route'=>'admin.user.dochangePass') )}}
 				<div class="form-group">
 					{{Form::password('password',array('class'=>'form-control', 'placeholder' => 'Enter your password') )}}
@@ -29,9 +27,9 @@
 				
 				{{Form::close()}}
 				{{Notification::showError()}}
-				
 			</div>
 		</div>
 	</div>
-</div>
+</section>
+
 @stop
