@@ -32,11 +32,16 @@ Route::group(array('prefix'=>'admin','before'=>'checkAdmin','namespace'=>'lienho
 	Route::resource('customer','CustomerController');
 });
 View::composer('admin::layouts.sidebar',function($view){
-	$danhmuc = lienhoa\models\Danhmuc::where('status',1)->orderBy('order','ASC')->get();
+	$danhmuc = \Cache::rememberForever('danhmuc-cache',function(){
+		return lienhoa\models\Danhmuc::where('status',1)->orderBy('order','ASC')->get();
+	});
 	$view->with(compact('danhmuc'));
 });
 
 View::composer('admin::layouts.header',function($view){
-	$customer = lienhoa\models\Customer::where('xem',0)->orderBy('id','DESC')->take(5)->get();
+	// $customer = lienhoa\models\Customer::where('xem',0)->orderBy('id','DESC')->take(5)->get();
+	$customer = \Cache::rememberForever('customer',function(){
+		return lienhoa\models\Customer::where('xem',0)->orderBy('id','DESC')->take(5)->get();
+	});
 	$view->with(compact('customer'));
 });

@@ -9,4 +9,18 @@ class Danhmuc extends \Eloquent{
 	public function sanpham(){
 		return $this->hasMany('Sanpham','danhmuc_id');
 	}
+
+	public static function boot(){
+		parent::boot();
+
+		self::created(function($danhmuc){
+			\Cache::forget("danhmuc-cache");
+		});
+		self::updated(function($danhmuc){
+			\Cache::forget("danhmuc-cache");
+		});
+		self::deleted(function($danhmuc){
+			\Cache::forget("danhmuc-cache");
+		});
+	}
 }

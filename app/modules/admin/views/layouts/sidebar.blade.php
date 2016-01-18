@@ -26,7 +26,7 @@
         <li class="treeview">
           <a href="#"><i class="fa fa-shopping-cart"></i> <span>Sản phẩm</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            @if(!is_null($danhmuc))
+            @if(Cache::has('danhmuc-cache'))
                 @foreach($danhmuc as $item_danhmuc)
                   <li><a href="{{route('admin.sanpham.index',$item_danhmuc->id)}}">{{$item_danhmuc->title}}</a></li>
                 @endforeach

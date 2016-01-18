@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace lienhoa\services\danhmuc;
 
 use lienhoa\models\Danhmuc;

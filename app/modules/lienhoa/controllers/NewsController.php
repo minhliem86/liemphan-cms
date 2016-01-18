@@ -122,7 +122,15 @@ class NewsController extends \BaseController {
 			'status' => \Input::get('status'),
 			'order'=> \Input::get('order'),
 		);
-		$this->news->update($id,$data);
+		$news = $this->news->find($id);
+		$news->title = \Input::get('title');
+		$news->slug = \Unicode::make(\Input::get('title'));
+		$news->content = \Input::get('content');
+		$news->image_path = $img_path;
+		$news->image_name = $img_name;
+		$news->status = \Input::get('status');
+		$news->order = \Input::get('order');
+		$news->save();
 
 		\Notification::success('UPDATED !');
 		return \Redirect::route('admin.tintuc.index');

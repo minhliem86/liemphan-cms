@@ -61,6 +61,7 @@ class DanhmucController extends \BaseController {
 			'status' => \Input::get('status'),
 			'order'=> $current,
 		);
+
 		$this->danhmuc->create($data);
 		\Notification::success('CREATED !');
 		return \Redirect::route('admin.danhmuc.index');
@@ -112,16 +113,16 @@ class DanhmucController extends \BaseController {
 			$img_name = \GetNameImage::make('/',$img_path);
 		}
 
-		$data = array(
-			'title'=> \Input::get('title'),
-			'slug'=> \Unicode::make(\Input::get('title')),
-			'mota' => \Input::get('mota'),
-			'image_path' => $img_path,
-			'image_name' => $img_name,
-			'status' => \Input::get('status'),
-			'order'=> \Input::get('order'),
-		);
-		$this->danhmuc->update($id,$data);
+		$danhmuc = $this->danhmuc->find($id);
+		$danhmuc->title = \Input::get('title');
+		$danhmuc->slug = \Unicode::make(\Input::get('title'));
+		$danhmuc->mota = \Input::get('mota');
+		$danhmuc->image_path = $img_path;
+		$danhmuc->image_name = $img_path;
+		$danhmuc->image_name = $img_path;
+		$danhmuc->status = \Input::get('status');
+		$danhmuc->order = \Input::get('order');
+		$danhmuc->save();
 
 		\Notification::success('UPDATED !');
 		return \Redirect::route('admin.danhmuc.index');

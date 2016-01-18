@@ -30,7 +30,8 @@ class CustomerController extends \BaseController {
 	public function show($id)
 	{
 		$customer = $this->customer->find($id);
-		$this->customer->update($id,array('xem'=>1));
+		$customer->xem = 1;
+		$customer->save();
 		return \View::make('lienhoa::pages.customer.view')->with(compact('customer'));
 	}
 
