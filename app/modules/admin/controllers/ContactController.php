@@ -19,14 +19,14 @@ class ContactController extends \BaseController{
 		$contact = $this->contact->first();
 		if(!is_null($contact)){
 			$id = $contact->id;
-			$data = array(
-				'phone'=> \Input::get('phone'),
-				'email'=> \Input::get('email'),
-				'address'=> \Input::get('address'),
-				'map'=> \Input::get('map'),
-				'show'=> 1
-			);
-			$this->contact->update($id,$data);
+
+			$contact = $this->contact->find($id);
+			$contact->phone= \Input::get('phone');
+			$contact->email= \Input::get('email');
+			$contact->address= \Input::get('address');
+			$contact->map= \Input::get('map');
+			$contact->show= 1;
+			$contact->save();
 		}else{
 			$data = array(
 				'phone'=> \Input::get('phone'),

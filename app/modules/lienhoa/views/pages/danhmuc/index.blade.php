@@ -48,7 +48,7 @@
 				  </table>
 				</div>
 				@else
-					<h2 class="text-center">No Data</h2>
+					<h2 class="text-center">Chưa có danh mục</h2>
 				@endif
             <!-- /.box-body -->
 			</div>

@@ -1,7 +1,12 @@
 <?php
 
+use services\frontend\RepoInterface as Model;
 class HomeController extends BaseController {
+	protected $model;
 
+	public function __construct(Model $model){
+		$this->model = $model;
+	}
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller
@@ -18,6 +23,11 @@ class HomeController extends BaseController {
 	public function showWelcome()
 	{
 		return View::make('hello');
+	}
+	public function index(){
+		$sp_moinhat = $this->model->sp_moinhat();
+		$sp_xemnhieu = $this->model->sp_xemnhieu();
+		return View::make('pages.home')->with(compact('sp_moinhat','sp_xemnhieu'));
 	}
 
 }

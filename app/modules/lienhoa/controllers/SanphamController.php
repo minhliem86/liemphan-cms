@@ -20,7 +20,7 @@ class SanphamController extends \BaseController {
 	 */
 	public function index($danhmuc_id)
 	{
-		$sanpham = $this->sanpham->whereGet('danhmuc_id',$danhmuc_id);
+		$sanpham = $this->sanpham->getSanPham_danhmuc($danhmuc_id);
 		$danhmuc = $this->danhmuc->find($danhmuc_id);
 		return \View::make('lienhoa::pages.sanpham.index')->with(compact('sanpham','danhmuc_id','danhmuc'));
 	}
@@ -68,6 +68,7 @@ class SanphamController extends \BaseController {
 			'image_path' => $img_path,
 			'image_name' => $img_name,
 			'status' => \Input::get('status'),
+			'khuyenmai' => \Input::get('khuyenmai'),
 			'order'=> $current,
 			'danhmuc_id'=> $danhmuc_id,
 		);
@@ -123,21 +124,21 @@ class SanphamController extends \BaseController {
 			$img_name = \GetNameImage::make('/',$img_path);
 		}
 
-		$data = array(
-			'name'=> \Input::get('name'),
-			'slug'=> \Unicode::make(\Input::get('name')),
-			'chatlieu' => \Input::get('chatlieu'),
-			'mausac' => \Input::get('mausac'),
-			'size' => \Input::get('size'),
-			'style' => \Input::get('style'),
-			'mota' => \Input::get('mota'),
-			'image_path' => $img_path,
-			'image_name' => $img_name,
-			'status' => \Input::get('status'),
-			'order'=> \Input::get('order'),
-			'danhmuc_id'=> \Input::get('danhmuc_id'),
-		);
-		$this->sanpham->update($sp_id,$data);
+		$sanpham = $this->sanpham->find($sp_id);
+		$sanpham->name = \Input::get('name');
+		$sanpham->slug = \Unicode::make(\Input::get('name'));
+		$sanpham->chatlieu = \Input::get('chatlieu');
+		$sanpham->mausac = \Input::get('mausac');
+		$sanpham->size = \Input::get('size');
+		$sanpham->style = \Input::get('style');
+		$sanpham->mota = \Input::get('mota');
+		$sanpham->image_path = $img_path;
+		$sanpham->image_name = $img_name;
+		$sanpham->status = \Input::get('status');
+		$sanpham->order = \Input::get('order');
+		$sanpham->danhmuc_id = \Input::get('danhmuc_id');
+		$sanpham->khuyenmai = \Input::get('khuyenmai');
+		$sanpham->save();
 
 		\Notification::success('UPDATED !');
 		return \Redirect::route('admin.sanpham.index',\Input::get('danhmuc_id'));

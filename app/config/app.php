@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'debug' => true,
+	'debug' => false,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -128,7 +128,8 @@ return array(
 		'services\ServiceProvider\ModelServiceProvider',
 		'Krucas\Notification\NotificationServiceProvider',
 		'Zizaco\Entrust\EntrustServiceProvider',
-		'Zizaco\Confide\ServiceProvider'
+		'Zizaco\Confide\ServiceProvider',
+		'lienhoa\events\EventServiceProvider'
 		
 	),
 

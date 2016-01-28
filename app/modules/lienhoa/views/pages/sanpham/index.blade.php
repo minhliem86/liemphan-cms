@@ -22,10 +22,11 @@
 				    <tr>
 						<th data-checkbox="true"></th>
 						<th data-field="id" class="sr-only">ID</th>
-						<th data-field="title" data-width="45%">Tên Sản Phẩm</th>
+						<th data-field="title" data-width="40%">Tên Sản Phẩm</th>
 						<th data-field="image">Hình ảnh</th>
 						<th>Trạng thái</th>
-						<th data-width="10%">Sắp xếp</th>
+						<th data-width="8%">Sắp xếp</th>
+						<th data-width="8%">Khuyến mãi</th>
 						<th data-width="18%">Thao tác</th>
 					</tr>
 				    </thead>
@@ -39,6 +40,7 @@
 							<td >
 							{{Form::select('show', array('0'=>'Ẩn', '1'=>'Hiện'), $item->status, array('class'=>'form-control', 'id'=>$item->id ) )}}</td>
 							<td>{{Form::text('order',$item->order,array('class' => 'form-control'))}}</td>
+							<td>{{Form::text('khuyenmai',$item->khuyenmai,array('class' => 'form-control'))}}</td>
 							<td><a href="{{route('admin.sanpham.edit',array($danhmuc_id,$item->id))}}" class="btn btn-info btn-xs"> Edit </a> <button class="btn  btn-danger btn-xs" onclick="confirm_remove(this)"  href="{{route('admin.sanpham.delete', array($item->id) )}}" > Remove </button></td>
 						</tr>
 						@endforeach

@@ -7,6 +7,20 @@ class Sanpham extends \Eloquent{
 	protected $fillable = ['name','mota','image_path','image_name','status','order','chatlieu','mausac','size','style','noibat','solanxem','slug'];
 
 	public function danhmuc(){
-		return $this->belongsTo('Danhmuc','danhmuc_id');
+		return $this->belongsTo('lienhoa\models\Danhmuc','danhmuc_id');
+	}
+
+	public static function boot(){
+		parent::boot();
+
+		self::created(function(){
+			\Cache::forget('sp_khuyenmai');
+		});
+		self::updated(function(){
+			\Cache::forget('sp_khuyenmai');
+		});
+		self::deleted(function(){
+			\Cache::forget('sp_khuyenmai');
+		});
 	}
 }

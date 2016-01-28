@@ -48,6 +48,11 @@
 				<span class="inline-radio"><input type="radio" name="status" value="1" {{$sanpham->status == 1 ? 'checked' : ''}}> <b>Hiện</b> </span>
 				<span class="inline-radio"><input type="radio" name="status" value="0" {{$sanpham->status == 0 ? 'checked' : ''}}> <b>Ẩn</b> </span>
 			</div>
+			<div class="form-margin">
+				<p><label for="khuyenmai">Sản phẩm khuyến mãi</label></p>
+				<span class="inline-radio"><input type="radio" class="style" name="khuyenmai" value="1" {{$sanpham->khuyenmai == 1 ? 'checked' : ''}}> <b>Có</b> </span>
+				<span class="inline-radio"><input type="radio" class="style" name="khuyenmai" value="0" {{$sanpham->khuyenmai == 0 ? 'checked' : ''}}> <b>Không</b> </span>
+			</div>
 			{{Form::hidden('danhmuc_id',$danhmuc->id)}}
 			<div class="form-margin">
 					{{Form::submit('Save',array('class'=>'btn btn-primary'))}}

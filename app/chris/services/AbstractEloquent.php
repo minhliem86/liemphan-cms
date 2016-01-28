@@ -4,7 +4,7 @@ namespace services;
 abstract class AbstractEloquent{
 
 	public function select_all(){
-		return $this->model->all();
+		return $this->model->orderBy('id','DESC')->get();
 	}
 
 	public function create($data){

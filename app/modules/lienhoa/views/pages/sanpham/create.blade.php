@@ -39,8 +39,14 @@
 			</div>
 
 			<div class="form-margin">
-				<span class="inline-radio"><input type="radio" name="status" value="1" checked=""> <b>Hiện</b> </span>
-				<span class="inline-radio"><input type="radio" name="status" value="0" > <b>Ẩn</b> </span>
+				<p><label for="status">Trạng thái</label></p>
+				<span class="inline-radio"><input type="radio" class="style" name="status" value="1" checked=""> <b>Hiện</b> </span>
+				<span class="inline-radio"><input type="radio" class="style" name="status" value="0" > <b>Ẩn</b> </span>
+			</div>
+			<div class="form-margin">
+				<p><label for="khuyenmai">Sản phẩm khuyến mãi</label></p>
+				<span class="inline-radio"><input type="radio" class="style" name="khuyenmai" value="1" checked=""> <b>Có</b> </span>
+				<span class="inline-radio"><input type="radio" class="style" name="khuyenmai" value="0" > <b>Không</b> </span>
 			</div>
 
 			<div class="form-margin">
@@ -59,7 +65,7 @@
 	{{HTML::script('public/backend/plugins/iCheck/icheck.min.js')}}
 	<script>
 		$(document).ready(function(){
-			$('input[name="status"]').iCheck({
+			$('input.style').iCheck({
 				radioClass: 'iradio_minimal-blue'
 			})
 		})
