@@ -11,11 +11,15 @@ interface RepoInterface{
 	public function sanpham_detail($slug_danhmuc,$slug);
 
 	public function name_danhmuc($slug);
+
+	public function danhmuc_id($danhmuc_slug);
 	
 	// SANPHAM
 	public function sp_moinhat();
 
 	public function sp_xemnhieu();
+
+	public function sp_relate($danhmuc_slug,$sp_slug);
 
 	// GIOITHIEU
 	public function gioithieu();
@@ -31,6 +35,8 @@ interface RepoInterface{
 	public function contact();
 
 	public function getEmailContact();
+
+	public function contact_map();
 
 	// SEARCH
 	public function search($key);

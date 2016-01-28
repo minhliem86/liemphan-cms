@@ -160,5 +160,18 @@ class DanhmucController extends \BaseController {
 		}
 	}
 
+	public function order(){
+		if(!\Request::ajax()){
+			return \View::make('404');
+		}else{
+			$id = \Input::get('id');
+			$val = \Input::get('value');
+			$danhmuc = $this->danhmuc->find($id);
+			$danhmuc->order = $val;
+			$danhmuc->save();
+			return \Response::json(array('msg'=>$val));
+		}
+	}
+
 
 }

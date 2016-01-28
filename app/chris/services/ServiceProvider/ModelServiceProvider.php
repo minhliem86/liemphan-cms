@@ -21,6 +21,7 @@ class ModelServiceProvider extends ServiceProvider{
 		$this->app->bind('lienhoa\services\danhmuc\RepoInterface','lienhoa\services\danhmuc\Eloquent');
 		$this->app->bind('lienhoa\services\sanpham\RepoInterface','lienhoa\services\sanpham\Eloquent');
 		$this->app->bind('lienhoa\services\customer\RepoInterface','lienhoa\services\customer\Eloquent');
+		$this->app->bind('lienhoa\services\support\RepoInterface','lienhoa\services\support\Eloquent');
 
 		// FRONTEND
 		$this->app->bind('services\frontend\RepoInterface','services\frontend\Eloquent');

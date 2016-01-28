@@ -19,21 +19,18 @@
 				  <table id="table-post" class="table table-bordered table-striped" data-page-number="1" data-page-size="10" data-pagination="true" data-page-list="[5,10,15,20]" data-show-toggle="true" data-click-to-select="true" data-select-item-name="id_field[]" data-toggle="table">
 				    <thead>
 				    <tr>
-						<th data-checkbox="true"></th>
-						<th data-field="id" class="sr-only">ID</th>
-						<th data-field="title" data-width="55%">Tên khách hàng</th>
-						<th>Status</th>
-						<th data-width="18%">Action</th>
+						<th data-checkbox="true" ></th>
+						<th data-field="id" class="sr-only" data-width="0%" >ID</th>
+						<th data-field="title" data-width="75%">Tên khách hàng</th>
+						<th data-width="20%">Action</th>
 					</tr>
 				    </thead>
 				    <tbody>
 					    @foreach($customer as $item)
 						<tr>
 							<td></td>
-							<td class="sr-only">{{$item->id}}</td>
+							<td >{{$item->id}}</td>
 							<td><b>{{$item->fullname}}</b></td>
-							<td >
-							{{Form::select('show', array('0'=>'Chưa xem', '1'=>'Đã xem'), $item->xem, array('class'=>'form-control', 'id'=>$item->id ) )}}</td>
 							<td><a href="{{route('admin.customer.show',$item->id)}}" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> View </a> <button class="btn  btn-danger btn-xs" onclick="confirm_remove(this)"  href="{{route('admin.customer.delete', array($item->id) )}}" > Remove </button></td>
 						</tr>
 						@endforeach

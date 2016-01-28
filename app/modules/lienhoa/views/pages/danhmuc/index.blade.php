@@ -23,8 +23,8 @@
 						<th data-checkbox="true"></th>
 						<th data-field="id" class="sr-only">ID</th>
 						<th data-field="title" data-width="55%">Danh mục</th>
-						<th>Trạng thái</th>
-						<th data-width="10%">Sắp xếp</th>
+						<th >Trạng thái</th>
+						<th data-width="10%"  data-halign="center"><button type="button" class="btn btn-xs btn-warning" id="re-sort">Thứ tự</button></th>
 						<th data-width="18%">Thao tác</th>
 					</tr>
 				    </thead>
@@ -36,15 +36,15 @@
 							<td><b>{{$item->title}}</b></td>
 							<td >
 							{{Form::select('show', array('0'=>'Ẩn', '1'=>'Hiện'), $item->status, array('class'=>'form-control', 'id'=>$item->id ) )}}</td>
-							<td>{{Form::text('order',$item->order,array('class' => 'form-control'))}}</td>
+							<td >{{Form::text('order',$item->order,array('class' => 'form-control text-center', 'id'=>$item->id))}}</td>
 							<td><a href="{{route('admin.danhmuc.edit',$item->id)}}" class="btn btn-info btn-xs"> Edit </a> <button class="btn  btn-danger btn-xs" onclick="confirm_remove(this)"  href="{{route('admin.danhmuc.delete', array($item->id) )}}" > Remove </button></td>
 						</tr>
 						@endforeach
 				    </tbody>
 				    <tfoot>
-				    	
+
 				    </tfoot>
-				   
+
 				  </table>
 				</div>
 				@else
@@ -63,6 +63,8 @@
 	<!-- SCRIPT -->
 	{{HTML::script('public/backend/js/table-bootstrap/bootstrap-table.js')}}
 	{{HTML::style('public/backend/js/table-bootstrap/bootstrap-table.css')}}
+
+
 
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -119,6 +121,29 @@
 				});
 
 			});
+			$('#re-sort').click(function(){
+				$('input[name="order"]').each(function(e){
+					var field_id = $(this).attr('id');
+					console.log(field_id);
+					$.ajax({
+						url: "{{route('admin.danhmuc.order')}}",
+						type: 'POST',
+						data: {value:$(this).val(), id:field_id},
+						'beforeSend':function(){
+							$('.wrap-loading').fadeIn();
+						},
+						success: function(respon){
+							$('.wrap-loading').fadeOut();
+						}
+
+					})
+				})
+				alertify.success('Sorted !');
+			})
+
+			
+
+
 		})
 
 		function confirm_remove(val){

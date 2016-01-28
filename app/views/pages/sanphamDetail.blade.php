@@ -6,7 +6,7 @@
 		<div class="block">
 			<h2 class="title-block"><span>Sản phẩm </span></h2>
 		</div>
-		<div class="wrap wrap-sp">
+		<div class="wrap wrap-chitiet">
 			<div class="row">
 				<div class="col-md-4 col-sm-5">
 					<img src="{{$sanpham->image_path}}" class="img-responsive" alt="">
@@ -33,8 +33,18 @@
 			<div class="block">
 				<h2 class="title-block"><span>Sản phẩm cùng loại</span></h2>
 			</div>
-			<ul>
-				<li><a href="#"></a></li>
+			<ul class="list-relate">
+				@foreach($sp_relate as $item_relate)
+				<li><a href="#">
+					<div class="wrap-sp">
+						<div class="filter"></div>
+						<img src="{{$item_relate->image_path}}" class="img-responsive img-sp" alt="Ao So mi Han Quoc">
+						<div class="wrap-name">
+							<h3 class="name-sp">{{$item_relate->name}}</h3>
+						</div>
+					</div>	<!-- end wrap-sp-->
+				</a></li>
+				@endforeach
 			</ul>
 		</div>
 	</div>	<!-- detail-page-->

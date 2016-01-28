@@ -21,6 +21,7 @@ class SanphamController extends BaseController{
 
 	public function sanphamDetail($slug_danhmuc,$slug_sp){
 		$sanpham = $this->model->sanpham_detail($slug_danhmuc,$slug_sp);
-		return View::make('pages.sanphamDetail')->with(compact('sanpham'));
+		$sp_relate = $this->model->sp_relate($slug_danhmuc,$slug_sp);
+		return View::make('pages.sanphamDetail')->with(compact('sanpham','sp_relate'));
 	}
 }

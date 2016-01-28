@@ -24,7 +24,7 @@ class ContactController extends \BaseController{
 			$contact->phone= \Input::get('phone');
 			$contact->email= \Input::get('email');
 			$contact->address= \Input::get('address');
-			$contact->map= \Input::get('map');
+			$contact->map= json_encode(explode(',', trim(\Input::get('map')) ));
 			$contact->show= 1;
 			$contact->save();
 		}else{
@@ -37,6 +37,8 @@ class ContactController extends \BaseController{
 			);
 			$this->contact->create($data);
 		}
+		
+
 		\Notification::success('Done !');
 		return \Redirect::back();
 	}

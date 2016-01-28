@@ -8,15 +8,5 @@ class Image extends Eloquent{
 		return $this->belongsTo('Album','album_id');
 	}
 
-	public static function boot(){
-		parent::boot();
-
-		static::deleted(function(){
-			Cache::forget('banner');
-		});
-
-		static::updated(function(){
-			Cache::forget('banner');
-		});
-	}
+	
 }

@@ -17,8 +17,9 @@ class LienheController extends BaseController{
 		$contact = Cache::rememberForever('contact_cache',function(){
 			return $this->model->contact();
 		});
-
-		return View::make('pages.lienhe')->with(compact('contact'));
+		$map = $this->model->contact_map();
+		$map = json_decode($map);
+		return View::make('pages.lienhe')->with(compact('contact','map'));
 	}
 	public function postCustomer(){
 		$input = \Input::all();

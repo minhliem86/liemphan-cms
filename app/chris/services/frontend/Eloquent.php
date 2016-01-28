@@ -40,6 +40,9 @@ class Eloquent extends AbstractEloquent implements RepoInterface{
 	public function sanpham_detail($slug_danhmuc,$slug){
 		return $this->sanpham->where('slug',$slug)->first();
 	}
+	public function danhmuc_id($danhmuc_slug){
+		return $this->danhmuc->where('slug',$danhmuc_slug)->first()->id;
+	}
 
 	// SANPHAM
 	public function sp_moinhat(){
@@ -47,6 +50,9 @@ class Eloquent extends AbstractEloquent implements RepoInterface{
 	}
 	public function sp_xemnhieu(){
 		return $this->sanpham->where('status',1)->orderBy('solanxem','DESC')->take(8)->get();
+	}
+	public function sp_relate($danhmuc_slug,$sp_slug){
+		return $this->sanpham->where('status',1)->where('danhmuc_id',$this->danhmuc_id($danhmuc_slug))->whereNotIn('slug',[$sp_slug])->select('name','slug','image_path','image_name')->take(10)->get();
 	}
 	// GIOITHIEU
 	public function gioithieu(){
@@ -68,6 +74,9 @@ class Eloquent extends AbstractEloquent implements RepoInterface{
 	// LIENHE
 	public function contact(){
 		return $this->contact->first();
+	}
+	public function contact_map(){
+		return $this->contact->first()->map;
 	}
 	public function getEmailContact(){
 		return $this->contact->select('email')->first();

@@ -175,6 +175,31 @@ class SanphamController extends \BaseController {
 			}
 		}
 	}
+	public function order(){
+		if(!\Request::ajax()){
+			return \View::make('404');
+		}else{
+			$id = \Input::get('id');
+			$val = \Input::get('value');
+			$sanpham = $this->sanpham->find($id);
+			$sanpham->order = $val;
+			$sanpham->save();
+			return \Response::json(array('msg'=>$val));
+		}
+	}
+
+	public function khuyenmai(){
+		if(!\Request::ajax()){
+			return \View::make('404');
+		}else{
+			$id = \Input::get('id');
+			$val = \Input::get('value');
+			$sanpham = $this->sanpham->find($id);
+			$sanpham->khuyenmai = $val;
+			$sanpham->save();
+			return \Response::json(array('msg'=>$val));
+		}
+	}
 
 
 }

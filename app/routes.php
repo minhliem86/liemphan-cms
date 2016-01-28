@@ -37,8 +37,11 @@ View::composer('layouts.sidebar',function($view){
 	$sp_khuyenmai = Cache::rememberForever('sp_khuyenmai',function(){
 		return lienhoa\models\Sanpham::where('status',1)->where('khuyenmai',1)->get();
 	});
+	$support = Cache::rememberForever('support',function(){
+		return lienhoa\models\Supporter::where('status',1)->orderBy('order','ASC')->get();
+	});
 
-	$view->with(compact('danhmuc','sp_khuyenmai'));
+	$view->with(compact('danhmuc','sp_khuyenmai','support'));
 	
 });
 View::composer(array('layouts.footer','layouts.header'),function($view){
@@ -47,5 +50,11 @@ View::composer(array('layouts.footer','layouts.header'),function($view){
 	});
 	$view->with(compact('diachi'));
 });
+
+View::composer('layouts.banner',function($view){
+	$banner = Album::with('image')->where('slug','banner')->where('show',1)->first();
+	$view->with(compact('banner'));
+});
+
 
 

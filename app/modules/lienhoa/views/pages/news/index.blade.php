@@ -24,7 +24,6 @@
 						<th data-field="id" class="sr-only">ID</th>
 						<th data-field="title" data-width="55%">Bài viết</th>
 						<th>Trạng thái</th>
-						<th data-width="10%">Sắp xếp</th>
 						<th data-width="18%">Thao tác</th>
 					</tr>
 				    </thead>
@@ -36,7 +35,8 @@
 							<td><b>{{$item->title}}</b></td>
 							<td >
 							{{Form::select('show', array('0'=>'Ẩn', '1'=>'Hiện'), $item->status, array('class'=>'form-control', 'id'=>$item->id ) )}}</td>
-							<td>{{Form::text('order',$item->order,array('class' => 'form-control'))}}</td>
+							
+
 							<td><a href="{{route('admin.tintuc.edit',$item->id)}}" class="btn btn-info btn-xs"> Edit </a> <button class="btn  btn-danger btn-xs" onclick="confirm_remove(this)"  href="{{route('admin.tintuc.delete', array($item->id) )}}" > Remove </button></td>
 						</tr>
 						@endforeach
@@ -119,6 +119,7 @@
 				});
 
 			});
+			
 		})
 
 		function confirm_remove(val){

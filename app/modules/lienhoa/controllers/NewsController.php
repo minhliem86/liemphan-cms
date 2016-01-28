@@ -167,6 +167,18 @@ class NewsController extends \BaseController {
 			}
 		}
 	}
+	public function order(){
+		if(!\Request::ajax()){
+			return \View::make('404');
+		}else{
+			$id = \Input::get('id');
+			$val = \Input::get('value');
+			$news = $this->news->find($id);
+			$news->order = $val;
+			$news->save();
+			return \Response::json(array('msg'=>$val));
+		}
+	}
 
 
 }

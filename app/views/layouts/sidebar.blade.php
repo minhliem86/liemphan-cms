@@ -20,14 +20,14 @@
 		</div>
 		<div class="content-box">
 			<div class="wrap-hotro">
-				<div class="block-hotro">
-					<p><i class="fa fa-user"></i> Hỗ Trợ 1</p>
-					<p class="phone">0123 456 789</p>
-				</div>
-				<div class="block-hotro">
-					<p><i class="fa fa-user"></i> Hỗ Trợ 2</p>
-					<p class="phone">0123 999 888</p>
-				</div>
+				@if(!empty(Cache::get('support')))
+					@foreach($support as $item_sup)
+					<div class="block-hotro">
+						<p><i class="fa fa-user"></i> {{$item_sup->name}}</p>
+						<p class="phone">{{$item_sup->phone}}</p>
+					</div>
+					@endforeach
+				@endif
 			</div>	<!-- end hotro -->
 		</div>
 	</div>	<!--end box -->
@@ -37,10 +37,17 @@
 			<h3 class="title-box">Thông tin khuyến mãi</h3>
 		</div>
 		<div class="content-box">
-			<div class="wrap-khuyenmai">
-				<i class="ic-hot"><img src="{{Assets::img('ic-hot.png')}}" class="img-responsive"></i>
-				<img src="{{Assets::img('sp/sp-khuyenmai.jpg')}}" class="img-responsive" alt="">
-			</div>	<!-- end wrap-khuyenmai-->
+			<div class="wrap-scroll">
+				@if(!empty(Cache::get('sp_khuyenmai')))
+				@foreach($sp_khuyenmai as $item_km)
+					<div class="wrap-khuyenmai">
+						<i class="ic-hot"><img src="{{Assets::img('ic-hot.png')}}" class="img-responsive"></i>
+						<a href="{{route('user.sanpham.detail',array(lienhoa\models\Danhmuc::find($item_km->danhmuc_id)->slug,$item_km->slug))}}"><img src="{{$item_km->image_path}}" class="img-responsive" alt=""></a>
+					</div>	<!-- end wrap-khuyenmai-->
+				@endforeach
+				@endif
+			</div>
+			
 		</div>
 	</div>	<!--end box -->
 </div>	<!-- end sidebar -->

@@ -1,3 +1,11 @@
 <section class="banner">
-	<img src="{{Assets::img('banner1.jpg')}}" class="img-responsive" alt="Lienhoafashion" />
+	<div class="wrap-banner">
+		<div class="slider-wrapper theme-light">
+			<div id="slider-nivo" class="nivoSlider">
+				@foreach($banner->image()->get() as $item)
+					<img src="{{asset($item->path_img)}}" alt="image01" />
+				@endforeach
+			</div>
+		</div>
+	</div>
 </section>	<!-- end banner -->

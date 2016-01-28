@@ -51,9 +51,9 @@
 							<p><i class="fa fa-phone"> {{$contact->phone}}</i></p>
 							<p><i class="fa fa-envelope"> {{$contact->email}}</i></p>
 						</div>
-						<div class="share">
+						<!-- <div class="share">
 							<span><a href=""><i class="fa fa-facebook-square"></i></a> <a href="#"><i class="fa fa-google-plus-square"></i></a></span>
-						</div>
+						</div> -->
 						<div class="wrap-map" id="map">
 							
 						</div>
@@ -95,10 +95,16 @@
 	function initMap() {
 	  // Create a map object and specify the DOM element for display.
 	  	var map = document.getElementById('map');
+	  	var vitri = {lat: {{$map[0]}}, lng: {{$map[1]}}}
 	  	var map = new google.maps.Map(map, {
-		    center: {lat: -34.397, lng: 150.644},
-		    scrollwheel: false,
-		    zoom: 10
+		    center: vitri,
+		    scrollwheel: true,
+		    zoom: 16
+		});
+		var marker = new google.maps.Marker({
+			position: vitri,
+			map: map,
+			title: '{{$contact->address}}'
 		});
 	}
 	</script>

@@ -21,7 +21,7 @@
 						@foreach($image as $item)
 						<li>
 							<div class="each-img">
-								<img src="{{asset($item->path_img)}}" data-source="{{asset($item->path_img)}}"  data-toggle="modal" data-target="#myModal" data-id="{{$item->id}}" data-alt="{{$item->alt_text}}" data-sort="{{$item->sort}}" data-show="{{$item->show}}" data-albumid="{{$album_id}}" data-imgbk="{{$item->path_img}}" class="img-responsive" />
+								<img src="{{asset($item->path_img)}}" data-source="{{asset($item->path_img)}}"  data-toggle="modal" data-target="#myModal" data-id="{{$item->id}}" data-alt="{{$item->alt_text}}" data-sort="{{$item->sort}}" data-show="{{$item->show}}" data-albumid="{{$album_id}}" data-imgbk="{{$item->path_img}}" class="img-responsive" style="height:150px; margin:0 auto " />
 								<p><b>T/Thái:</b> {{$item->show == 1 ? 'show' : 'hide' }}</p>
 								<p>{{Form::text('sort',$item->sort,array('class'=>'class-form form-control') )}}</p>
 								<p><input type="checkbox" class="check" name="check[]" value="{{$item->id}}" /></p>
