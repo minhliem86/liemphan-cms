@@ -9,7 +9,7 @@
 			<div class="row">
 				@if(!is_null($sp_moinhat))
 				@foreach($sp_moinhat as $item_moi)
-				<div class="col-md-3 col-sm-3">
+				<div class="col-md-3 col-sm-3 col-xs-6">
 					<a href="#">
 						<div class="wrap-sp">
 							<div class="filter"></div>
@@ -35,7 +35,7 @@
 			<div class="row">
 				@if(!is_null($sp_xemnhieu))
 				@foreach($sp_xemnhieu as $item_xemnhieu)
-				<div class="col-md-3 col-sm-3">
+				<div class="col-md-3 col-sm-3 col-xs-6">
 					<a href="#">
 						<div class="wrap-sp">
 							<div class="filter"></div>

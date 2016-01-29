@@ -10,16 +10,20 @@
 		</div>	<!-- left-header-->
 	</section>
 	<nav>
-		<div class="navigation-bar">
+		<div class="navigation-bar ">
 			<div class="navbar-header">
-				<span class="navbar-brand visible-xs">Menu</span>
-				 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<button type="button" class="search-btn collapsed navbar-toggle" data-toggle="collapse" data-target="#collape-search" aria-expanded="false">
+					<i  class="fa fa-search"></i>
+				</button>
+				<!-- <span class="navbar-brand visible-xs">Menu</span> -->
+				
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collape-menu" aria-expanded="false">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
 			</div>
-			<div class="collapse navbar-collapse">
+			<div class="collapse navbar-collapse" id="collape-menu">
 				<ul class="main-menu">
 					<li><a href="{{url('/')}}">Trang Chủ</a></li>
 					<li><a href="{{route('user.gioithieu')}}">Giới Thiệu</a></li>
@@ -30,14 +34,16 @@
 				</ul>
 			</div>
 		</div>
-
-		{{Form::open(array('route'=>'user.search', 'id'=>'search-form','method'=>'GET'))}}
-			<div class="input-group">
-				<input type="text" class="form-control" name="key" />
-				<span class="input-group-addon">
-					<i class="fa fa-search"></i>
-				</span>
-			</div>
-		{{Form::close()}}
+		<div class="wrap-formSearch collapse " id="collape-search">
+			{{Form::open(array('route'=>'user.search', 'id'=>'search-form','method'=>'GET'))}}
+				<div class="input-group">
+					<input type="text" class="form-control" name="key" />
+					<span class="input-group-addon">
+						<i class="fa fa-search"></i>
+					</span>
+				</div>
+			{{Form::close()}}
+		</div>
+		
 	</nav>
 </header>

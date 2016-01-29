@@ -32,6 +32,11 @@ a{text-decoration:none !important; outline:none !important}
 	font-family: 'Open Sans', sans-serif;
 }
 
+@mixin media($width){
+	@media screen and (max-width:$width){
+		@content;
+	}
+}
 $cl-xanhla-dam:#215524;
 $cl-xanhla-nhat:#28c832;
 $cl-vang:#fff500;
@@ -77,7 +82,12 @@ body.xanh {
 					border-top:18px solid transparent;
 					border-bottom:18px solid transparent;
 					border-left:15px solid #979897;
+					@media screen and (max-width:480px){
+						border-top:16px solid transparent;
+						border-bottom:16px solid transparent;
+					}
 				}
+
 			}
 
 		}
@@ -90,11 +100,17 @@ body.xanh {
 			font-weight:600;
 			font-size:14px;
 			margin-bottom:5px;
+			@media screen and (max-width:480px){
+				font-size:12px;
+			}
 		}
 		p.mota{
 			@include fontOpenSans;
 			font-size:13px;
 			color:$cl-xanhla-dam;
+			@media screen and (max-width:480px){
+				font-size:11px;
+			}
 		}
 	}
 	.sanpham-page{
@@ -116,6 +132,12 @@ header{
 		a.logo-link{
 			// float:left;
 			margin-left:15px;
+			@media screen and (max-width:480px){
+				margin-left:0;
+				display:block;
+				margin-bottom:10px;
+				text-align: center;
+			}
 		}
 		.right-header{
 			position:absolute;
@@ -123,14 +145,38 @@ header{
 			@include v-align;
 			width:40%;
 			right:0;
+
+			@media screen and (max-width:991px){
+				width:60%;
+			}
+			@media screen and (max-width:767px){
+				width:55%;
+			}
+			@media screen and (max-width:480px){
+				position:static;
+				width:100%;
+				top:0;
+				transform:translateY(0);
+				-webkite-transform:translateY(0);
+				-moz-transform:translateY(0);
+			}
 			.diachi{
 				// margin-bottom:10px;
 				padding-right:15px;
+				@media screen and (max-width:480px){
+					padding-right:0;
+				}
 				p{
 					font-size:14px;
 					@include fontGotham;
 					text-transform: uppercase;
 					text-align: right;
+					@media screen and (max-width:767px){
+						font-size:12px;
+					}
+					@media screen and (max-width:480px){
+						text-align: center;
+					}
 				}
 			}
 		}
@@ -139,12 +185,42 @@ header{
 	nav{
 		div.navigation-bar{
 			display:inline-block;
+			@media screen and (max-width:767px){
+				display: block;
+
+				.navbar-header{
+					button{
+						border:1px solid #fff;
+						border-radius:3px;
+						float:left;
+						margin-left:15px;
+						margin-right:0;
+						.icon-bar{
+							height:2px;
+							background: #fff;
+						}
+						&.search-btn{
+							padding:6px 15px;
+							color:white;
+							float:right;
+							margin-right:15px;
+						}
+					}
+					.navbar-brand{
+						text-transform: uppercase;
+						color:white;
+						font-size:14px;
+						font-weight:bold;
+					}
+				}
+			}
 			ul.main-menu{
 				display: block;
 				// text-align: center;
 				li{
 					display: inline-block;
 					padding:10px 30px;
+
 					a{
 						display:block;
 						text-transform:uppercase;
@@ -153,9 +229,16 @@ header{
 						font-weight:600;
 						color:white;
 						@include transition(all 0.3s);
+						@media screen and (max-width:480px){
+							font-size:14px;
+						}
 						&:hover{
 							color:$cl-vang;
 						}
+						@media screen and (max-width:991px){
+							font-size:14px;
+						}
+
 					}
 					& .active{
 						a{
@@ -165,14 +248,45 @@ header{
 					&:first-child{
 						padding-left:0;
 					}
+
+
+					@media screen and (max-width:1199px){
+						padding:10px 20px;
+					}
+					@media screen and (max-width:991px){
+						padding:10px;
+					}
+					@media screen and (max-width:767px){
+						display:block;
+						padding:10px 0;
+					}
 				}
 			}
 		}
-		#search-form{
+		.wrap-formSearch{
 			display:inline-block;
 			width:300px;
 			margin:5px 15px 0 15px;
 			float:right;
+			@media screen and (min-width:1200px){
+				visibility: visible;
+			}
+
+			@media screen and (max-width:1199px){
+				width:200px;
+				visibility: visible;
+				form{
+					
+				}
+			}
+			@media screen and (max-width:767px){
+				display: none;
+				width:100%;
+				margin:0;
+				float:none;
+				padding-top:10px;
+				background:#fff
+			}
 		}
 	}
 }
@@ -183,8 +297,16 @@ section.body{
 	}
 	section.content-area{
 		.sidebar{
+			@media (min-width:481px) and (max-width:767px){
+				overflow: hidden;
+			}
 			.box{
 				margin-bottom:15px;
+				@media (min-width:481px) and (max-width:767px){
+					width:50%;
+					padding:10px;
+					float:left;
+				}
 				.top-box{
 					padding:10px 20px;
 					h3.title-box{
@@ -192,6 +314,12 @@ section.body{
 						font-weight:bold;
 						@include fontGotham;
 						text-transform: uppercase;
+						@media screen and (max-width:480px){
+							font-size:12px;
+						}
+						@media screen and (max-width:1199px){
+							font-size:14px;
+						}
 					}
 				}
 				.content-box{
@@ -259,13 +387,16 @@ section.body{
 					@include fontGotham;
 					font-size:16px;
 					text-transform: uppercase;
+					@media screen and (max-width:480px){
+						font-size:12px;
+					}
 					span{
 						padding:10px 20px;
 						display: inline-block;
 						color:white;
 					}
 				}
-				
+
 			}
 			.wrap-sp{
 				// border:1px solid #ccc;
@@ -282,6 +413,10 @@ section.body{
 					bottom:-50px;
 					@include transition(all 0.3s);
 					opacity:0;
+					@media screen and (max-width:480px){
+						bottom:0;
+						opacity:1;
+					}
 				}
 				.filter{
 					background:rgba(0,0,0,0.3);
@@ -378,7 +513,7 @@ section.body{
 					}
 				}
 			}
-			
+
 			//LIEN HE
 			.wrap-lienhe{
 				#form-lienhe{
@@ -446,6 +581,11 @@ section.body{
 							font-size:14px;
 							@include fontOpenSans;
 							margin-bottom:5px
+						}
+						.left-chitiet{
+							@media screen and (max-width:767px){
+								margin-bottom:10px;
+							}
 						}
 					}
 				}
@@ -564,6 +704,10 @@ footer{
 		text-transform: uppercase;
 	}
 	.thongtin-footer{
+		@media screen and (max-width:767px){
+			margin-bottom:10px;
+			text-align: center;
+		}
 		p{
 			font-size:14px;
 			// font-weight: 600;
@@ -580,5 +724,5 @@ footer{
 .invalid{
 	color:red;
 	display: block;
-	font-size:11px;	
+	font-size:11px;
 }

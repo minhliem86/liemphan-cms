@@ -1,5 +1,5 @@
 <div class="sidebar">
-	<div class="box">
+	<div class="box clearfix">
 		<div class="top-box">
 			<h3 class="title-box">Danh Mục Sản Phẩm</h3>
 		</div>

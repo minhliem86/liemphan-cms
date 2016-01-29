@@ -1,7 +1,7 @@
 <footer>
 	<div class="container">
 		<div class="row30">
-			<div class="col-sm-3 col-md-2">
+			<div class="col-sm-3 col-md-2 hidden-xs">
 				<h1 class="small-logo">LienHoa<br/><span>Fashion</span></h1>
 			</div>
 			<div class="col-sm-5 col-md-4 col-md-offset-2">

@@ -2,8 +2,8 @@
 	<div class="wrap-banner">
 		<div class="slider-wrapper theme-light">
 			<div id="slider-nivo" class="nivoSlider">
-				@foreach($banner->image()->get() as $item)
-					<img src="{{asset($item->path_img)}}" alt="image01" />
+				@foreach($banner as $item)
+					<!-- <img src="{{asset($item->path_img)}}" alt="image01" /> -->
 				@endforeach
 			</div>
 		</div>

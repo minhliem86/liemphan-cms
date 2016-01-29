@@ -52,7 +52,9 @@ View::composer(array('layouts.footer','layouts.header'),function($view){
 });
 
 View::composer('layouts.banner',function($view){
-	$banner = Album::with('image')->where('slug','banner')->where('show',1)->first();
+	$banner = Cache::rememberForever('banner',function(){
+		return Image::with(array('album'=>function($query){$query->where('slug','banner');}))->get();
+	});
 	$view->with(compact('banner'));
 });
 

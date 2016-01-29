@@ -57,6 +57,10 @@ body.xanh .block h2.title-block span {
     border-top: 18px solid transparent;
     border-bottom: 18px solid transparent;
     border-left: 15px solid #979897; }
+    @media screen and (max-width: 480px) {
+      body.xanh .block h2.title-block span:after {
+        border-top: 16px solid transparent;
+        border-bottom: 16px solid transparent; } }
 body.xanh .wrap-name {
   background: #9eeba2; }
   body.xanh .wrap-name .name-sp {
@@ -65,10 +69,16 @@ body.xanh .wrap-name {
     font-weight: 600;
     font-size: 14px;
     margin-bottom: 5px; }
+    @media screen and (max-width: 480px) {
+      body.xanh .wrap-name .name-sp {
+        font-size: 12px; } }
   body.xanh .wrap-name p.mota {
     font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     color: #215524; }
+    @media screen and (max-width: 480px) {
+      body.xanh .wrap-name p.mota {
+        font-size: 11px; } }
 body.xanh .sanpham-page span.all a {
   color: #215524; }
 
@@ -80,6 +90,12 @@ header section.logo {
   position: relative; }
   header section.logo a.logo-link {
     margin-left: 15px; }
+    @media screen and (max-width: 480px) {
+      header section.logo a.logo-link {
+        margin-left: 0;
+        display: block;
+        margin-bottom: 10px;
+        text-align: center; } }
   header section.logo .right-header {
     position: absolute;
     top: 50%;
@@ -88,15 +104,60 @@ header section.logo {
     -moz-transform: translateY(-50%);
     width: 40%;
     right: 0; }
+    @media screen and (max-width: 991px) {
+      header section.logo .right-header {
+        width: 60%; } }
+    @media screen and (max-width: 767px) {
+      header section.logo .right-header {
+        width: 55%; } }
+    @media screen and (max-width: 480px) {
+      header section.logo .right-header {
+        position: static;
+        width: 100%;
+        top: 0;
+        transform: translateY(0);
+        -webkite-transform: translateY(0);
+        -moz-transform: translateY(0); } }
     header section.logo .right-header .diachi {
       padding-right: 15px; }
+      @media screen and (max-width: 480px) {
+        header section.logo .right-header .diachi {
+          padding-right: 0; } }
       header section.logo .right-header .diachi p {
         font-size: 14px;
         font-family: 'GothamVnu-Bold';
         text-transform: uppercase;
         text-align: right; }
+        @media screen and (max-width: 767px) {
+          header section.logo .right-header .diachi p {
+            font-size: 12px; } }
+        @media screen and (max-width: 480px) {
+          header section.logo .right-header .diachi p {
+            text-align: center; } }
 header nav div.navigation-bar {
   display: inline-block; }
+  @media screen and (max-width: 767px) {
+    header nav div.navigation-bar {
+      display: block; }
+      header nav div.navigation-bar .navbar-header button {
+        border: 1px solid #fff;
+        border-radius: 3px;
+        float: left;
+        margin-left: 15px;
+        margin-right: 0; }
+        header nav div.navigation-bar .navbar-header button .icon-bar {
+          height: 2px;
+          background: #fff; }
+        header nav div.navigation-bar .navbar-header button.search-btn {
+          padding: 6px 15px;
+          color: white;
+          float: right;
+          margin-right: 15px; }
+      header nav div.navigation-bar .navbar-header .navbar-brand {
+        text-transform: uppercase;
+        color: white;
+        font-size: 14px;
+        font-weight: bold; } }
   header nav div.navigation-bar ul.main-menu {
     display: block; }
     header nav div.navigation-bar ul.main-menu li {
@@ -113,24 +174,63 @@ header nav div.navigation-bar {
         -webkit-transition: all 0.3s;
         -moz-transition: all 0.3s;
         -o-transition: all 0.3s; }
+        @media screen and (max-width: 480px) {
+          header nav div.navigation-bar ul.main-menu li a {
+            font-size: 14px; } }
         header nav div.navigation-bar ul.main-menu li a:hover {
           color: #fff500; }
+        @media screen and (max-width: 991px) {
+          header nav div.navigation-bar ul.main-menu li a {
+            font-size: 14px; } }
       header nav div.navigation-bar ul.main-menu li .active a {
         color: #fff500; }
       header nav div.navigation-bar ul.main-menu li:first-child {
         padding-left: 0; }
-header nav #search-form {
+      @media screen and (max-width: 1199px) {
+        header nav div.navigation-bar ul.main-menu li {
+          padding: 10px 20px; } }
+      @media screen and (max-width: 991px) {
+        header nav div.navigation-bar ul.main-menu li {
+          padding: 10px; } }
+      @media screen and (max-width: 767px) {
+        header nav div.navigation-bar ul.main-menu li {
+          display: block;
+          padding: 10px 0; } }
+header nav .wrap-formSearch {
   display: inline-block;
   width: 300px;
   margin: 5px 15px 0 15px;
   float: right; }
+  @media screen and (min-width: 1200px) {
+    header nav .wrap-formSearch {
+      visibility: visible; } }
+  @media screen and (max-width: 1199px) {
+    header nav .wrap-formSearch {
+      width: 200px;
+      visibility: visible; } }
+  @media screen and (max-width: 767px) {
+    header nav .wrap-formSearch {
+      display: none;
+      width: 100%;
+      margin: 0;
+      float: none;
+      padding-top: 10px;
+      background: #fff; } }
 
 section.body {
   margin-bottom: 20px; }
   section.body section.banner {
     margin-bottom: 20px; }
+  @media (min-width: 481px) and (max-width: 767px) {
+    section.body section.content-area .sidebar {
+      overflow: hidden; } }
   section.body section.content-area .sidebar .box {
     margin-bottom: 15px; }
+    @media (min-width: 481px) and (max-width: 767px) {
+      section.body section.content-area .sidebar .box {
+        width: 50%;
+        padding: 10px;
+        float: left; } }
     section.body section.content-area .sidebar .box .top-box {
       padding: 10px 20px; }
       section.body section.content-area .sidebar .box .top-box h3.title-box {
@@ -138,6 +238,12 @@ section.body {
         font-weight: bold;
         font-family: 'GothamVnu-Bold';
         text-transform: uppercase; }
+        @media screen and (max-width: 480px) {
+          section.body section.content-area .sidebar .box .top-box h3.title-box {
+            font-size: 12px; } }
+        @media screen and (max-width: 1199px) {
+          section.body section.content-area .sidebar .box .top-box h3.title-box {
+            font-size: 14px; } }
     section.body section.content-area .sidebar .box .content-box {
       background: #e5e5e5; }
       section.body section.content-area .sidebar .box .content-box .list-danhmuc {
@@ -186,6 +292,9 @@ section.body {
       font-family: 'GothamVnu-Bold';
       font-size: 16px;
       text-transform: uppercase; }
+      @media screen and (max-width: 480px) {
+        section.body section.content-area .content .block h2.title-block {
+          font-size: 12px; } }
       section.body section.content-area .content .block h2.title-block span {
         padding: 10px 20px;
         display: inline-block;
@@ -207,6 +316,10 @@ section.body {
       -moz-transition: all 0.3s;
       -o-transition: all 0.3s;
       opacity: 0; }
+      @media screen and (max-width: 480px) {
+        section.body section.content-area .content .wrap-sp .wrap-name {
+          bottom: 0;
+          opacity: 1; } }
     section.body section.content-area .content .wrap-sp .filter {
       background: rgba(0, 0, 0, 0.3);
       width: 100%;
@@ -320,6 +433,9 @@ section.body {
       font-size: 14px;
       font-family: 'Open Sans', sans-serif;
       margin-bottom: 5px; }
+    @media screen and (max-width: 767px) {
+      section.body section.content-area .content .detail-page .wrap.wrap-chitiet .left-chitiet {
+        margin-bottom: 10px; } }
   section.body section.content-area .content .sanpham-page .block h2 {
     display: inline-block; }
   section.body section.content-area .content .sanpham-page .block span.all {
@@ -409,6 +525,10 @@ footer {
     color: white;
     font-family: 'GothamVnu-Bold';
     text-transform: uppercase; }
+  @media screen and (max-width: 767px) {
+    footer .thongtin-footer {
+      margin-bottom: 10px;
+      text-align: center; } }
   footer .thongtin-footer p {
     font-size: 14px; }
   footer .thongtin-footer p.company-name {

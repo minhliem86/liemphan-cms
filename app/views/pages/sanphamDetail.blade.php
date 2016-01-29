@@ -8,10 +8,10 @@
 		</div>
 		<div class="wrap wrap-chitiet">
 			<div class="row">
-				<div class="col-md-4 col-sm-5">
+				<div class="col-md-4 col-sm-5 left-chitiet">
 					<img src="{{$sanpham->image_path}}" class="img-responsive" alt="">
 				</div>
-				<div class="col-md-8 col-sm-7">
+				<div class="col-md-8 col-sm-7 right-sp">
 					<h4 class="title-sp">{{$sanpham->name}}</h4>
 					<p><b>Chất liệu:</b> {{$sanpham->chatlieu}}</p>
 					<p><b>Kiểu dáng:</b> {{$sanpham->style}}</p>
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		@endif
-		<div class=" wrap wrap-relate">
+		<div class=" wrap wrap-relate hidden-xs">
 			<div class="block">
 				<h2 class="title-block"><span>Sản phẩm cùng loại</span></h2>
 			</div>

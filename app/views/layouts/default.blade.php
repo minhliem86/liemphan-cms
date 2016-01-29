@@ -33,11 +33,12 @@
 						@include('layouts.banner')
 						<section class="content-area">
 							<div class="row">
-								<div class="col-sm-4 col-md-3">
-									@include('layouts.sidebar')
-								</div>
-								<div class="col-sm-8 col-md-9">
+								
+								<div class="col-sm-8 col-md-9 col-sm-push-4 col-md-push-3 col-lg-9 col-lg-push-3">
 									@yield('content')
+								</div>
+								<div class="col-sm-4 col-md-3 col-sm-pull-8 col-md-pull-9 col-lg-3 col-lg-pull-9">
+									@include('layouts.sidebar')
 								</div>
 							</div>
 						</section>
